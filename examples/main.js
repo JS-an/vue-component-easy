@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { VueNumberEasy } from "../packages/index.js"
-Vue.use(VueNumberEasy)
+import VueComponentEasy from "../packages/index"
+Vue.use(VueComponentEasy)
+console.log(window)
 
-Vue.config.productionTip = false
+Vue.productionTip = false
 
 new Vue({
   render: h => h(App),

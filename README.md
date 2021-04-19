@@ -38,7 +38,6 @@ Vue.use(VueComponentEasy);
 </template>
 
 <script>
-import VueCalendar from 'vue-number-easy'
 
 export default {
   data () {
@@ -48,6 +47,17 @@ export default {
   }
 }
 </script>
+```
+
+## CDN
+例如: [使用jsdelivrCDN](https://www.jsdelivr.com/package/npm/vue-component-easy "使用jsdelivrCDN")
+```html
+<!-- index.html -->
+<script src="https://cdn.jsdelivr.net/npm/vue-component-easy@0.1.7/lib/vue-component-easy.umd.min.js"></script>
+```
+```js
+// main.js
+Vue.use(window['vue-component-easy'].default);
 ```
 
 ## Options

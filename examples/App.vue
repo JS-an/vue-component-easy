@@ -2,7 +2,12 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <VueNumberEasy v-model="value" @input="handleInput"></VueNumberEasy>
+    <VueNumberEasy
+      v-model="value"
+      numberType="float"
+      :decimal="3"
+      @input="handleInput"
+    ></VueNumberEasy>
   </div>
 </template>
 

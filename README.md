@@ -64,13 +64,14 @@ Vue.use(window['vue-component-easy'].default);
 
 ### Props
 
-| Props      | Type   | Default     | Description                                                                            |
-| ---------- | ------ | ----------- | -------------------------------------------------------------------------------------- |
-| value      | number | null        | 绑定值                                                                                 |
-| numberType | String | positiveInt | 类型; 例如:正整数(positiveInt), 整数(int), 正浮点数(positiveFloat), 浮点数(twoDecimal) |
-| prepend    | String | ""          | 前置字符                                                                               |
-| append     | String | ""          | 后置字符                                                                               |
-| UIClass    | String | "element"   | 使用样式: "element" 或 "ant"(需引入相应的框架样式)                                     |
+| Props      | Type   | Default     | Description |
+| ---------- | ------ | ----------- | ----------- |
+| value      | number | null        | 绑定值 |
+| numberType | String | positiveInt | 类型; 例如:正整数(positiveInt), 整数(int), 正浮点数(positiveFloat), 浮点数(float) |
+| decimal    | number | 2          | 小数点保留位数(需在`positiveFloat`或`float`模式下使用) |
+| prepend    | String | ""          | 前置字符 |
+| append     | String | ""          | 后置字符 |
+| UIClass    | String | "element"   | 使用样式: "element" 或 "ant"(需引入相应的框架样式) |
 
 ### event
 

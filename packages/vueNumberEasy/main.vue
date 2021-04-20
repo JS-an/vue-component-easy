@@ -28,6 +28,10 @@ export default {
       type: String,
       default: "positiveInt",
     },
+    decimal: {
+      type: Number,
+      default: 2,
+    },
     prepend: {
       type: String,
       default: "",
@@ -47,6 +51,11 @@ export default {
       actualValue: null,
     };
   },
+  computed: {
+    getDecimal() {
+      return new RegExp(`^0*(-?\\d+)(\\.(\\d{0,${this.decimal}}))?\\S*?$`);
+    },
+  },
   watch: {
     value: {
       immediate: true,
@@ -64,8 +73,7 @@ export default {
   methods: {
     /**
      * 样式方法
-     * @param type
-     * String("element","ant")
+     * @param type String("element","ant")
      * */
     getClass(type) {
       switch (type) {
@@ -115,8 +123,7 @@ export default {
     },
     /**
      * 转换方法
-     * @param numberType
-     * String("positiveInt","twoDecimal")
+     * @param numberType String
      * @param val String(需要转换的值)
      * */
     TransformNum(numberType, val) {
@@ -138,16 +145,16 @@ export default {
                 .replace(/[^0-9-]/g, "") // 移除数字 负号之外的所有字符
                 .replace(/\B(?=(\d{3})+$)/g, ",") // 每三位","分割
             : val.replace(/[^0-9-]/g, ""); // 移除数字 负号之外的所有字符
-        // 正浮点数(保留两位小数)
+        // 正浮点数
         case "positiveFloat":
           return val
             .replace(/^\d+-$/, val.replace(/-$/, ""))
             .replace(/[^0-9.]/g, "") // 移除数字 小数点之外的所有字符
             .replace(/(?<!^[\d-]+)\./g, "") // 移除第一个小数点之外的所有句点
-            .replace(/^0*(-?\d+)(\.(\d{0,2}))?\S*?$/, "$1$2") // 保留两位小数
+            .replace(this.getDecimal, "$1$2") // 保留小数
             .replace(/(\d)(?=(\d{3})+($|\.))/g, "$1,"); // 小数点前每三位","分割
-        // 浮点数(保留两位小数)
-        case "twoDecimal":
+        // 浮点数
+        case "float":
           return val
             .replace(/^\d+-$/, val.replace(/-$/, ""))
             .replace(/-(\D+)/, "-") // 移除第一个负号之后的所有字符
@@ -155,7 +162,7 @@ export default {
             .replace(/(?<!^)-/g, "") // 移除第一个负号之外的所有负号
             .replace(/[^0-9.-]/g, "") // 移除数字 小数点 负号之外的所有字符
             .replace(/(?<!^[\d-]+)\./g, "") // 移除第一个小数点之外的所有句点
-            .replace(/^0*(-?\d+)(\.(\d{0,2}))?\S*?$/, "$1$2") // 保留两位小数
+            .replace(this.getDecimal, "$1$2") // 保留小数
             .replace(/(\d)(?=(\d{3})+($|\.))/g, "$1,"); // 小数点前金额每三位","分割
         default:
           break;

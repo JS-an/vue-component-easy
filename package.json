@@ -1,6 +1,6 @@
 {
   "name": "vue-component-easy",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": "allen",
   "description": "A easy to use number component",
   "main": "lib/vue-component-easy.umd.min.js",

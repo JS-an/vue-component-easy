@@ -1,0 +1,20 @@
+.easy-number-group {
+  display: flex;
+}
+.easy-number {
+  flex: 1;
+}
+.easy-number-group__addon {
+  border: 1px solid;
+  padding: 4px;
+  background-color: #f5f7fa;
+  color: #909399;
+}
+.easy-number-group__prepend {
+  border-radius: 4px 0 0 4px;
+  transform: translateX(1px);
+}
+.easy-number-group__append {
+  border-radius: 0 4px 4px 0;
+  transform: translateX(-1px);
+}

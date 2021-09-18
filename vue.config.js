@@ -6,5 +6,11 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html'
     }
-  }
+  },
+  configureWebpack: {
+    output: {
+      libraryExport: 'default'
+    }
+  },
+  // css: { extract: true },
 }

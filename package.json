@@ -1,6 +1,6 @@
 {
   "name": "vue-component-easy",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": "allen",
   "description": "A easy to use number component",
   "main": "lib/vue-component-easy.umd.min.js",
@@ -23,6 +23,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lib": "vue-cli-service build --target lib --name vue-component-easy --dest lib packages/index.js",
+    "lib:css": "sass theme:lib/theme",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -38,6 +39,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.41.0",
+    "sass-loader": "^12.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

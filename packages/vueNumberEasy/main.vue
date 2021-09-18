@@ -42,7 +42,7 @@ export default {
     },
     UIClass: {
       type: String,
-      default: "element",
+      default: "",
     },
   },
   data() {
@@ -75,7 +75,8 @@ export default {
      * 样式方法
      * @param type String("element","ant")
      * */
-    getClass(type) {
+    getClass(t) {
+      const type = t || (this.$EASY || {}).size || "";
       switch (type) {
         case "element":
           return {
@@ -147,23 +148,27 @@ export default {
             : val.replace(/[^0-9-]/g, ""); // 移除数字 负号之外的所有字符
         // 正浮点数
         case "positiveFloat":
-          return val
-            .replace(/^\d+-$/, val.replace(/-$/, ""))
-            .replace(/[^0-9.]/g, "") // 移除数字 小数点之外的所有字符
-            // .replace(/(?<!^[\d-]+)\./g, "") // 移除第一个小数点之外的所有句点(下一条正则可以实现此规则，且ie不支持回顾断言)
-            .replace(this.getDecimal, "$1$2") // 保留小数
-            .replace(/(\d)(?=(\d{3})+($|\.))/g, "$1,"); // 小数点前每三位","分割
+          return (
+            val
+              .replace(/^\d+-$/, val.replace(/-$/, ""))
+              .replace(/[^0-9.]/g, "") // 移除数字 小数点之外的所有字符
+              // .replace(/(?<!^[\d-]+)\./g, "") // 移除第一个小数点之外的所有句点(下一条正则可以实现此规则，且ie不支持回顾断言)
+              .replace(this.getDecimal, "$1$2") // 保留小数
+              .replace(/(\d)(?=(\d{3})+($|\.))/g, "$1,")
+          ); // 小数点前每三位","分割
         // 浮点数
         case "float":
-          return val
-            // .replace(/^\d+-$/, val.replace(/-$/, ""))
-            .replace(/[^0-9.-]/g, "") // 移除数字 小数点 负号之外的所有字符
-            .replace(/-(\D+)/, "-") // 移除第一个负号之后的所有字符
-            .replace(/^-0\d+$/, val.replace(/^-0/, "-"))
-            .replace(/(?!^)-/g, "") // 移除第一个负号之外的所有负号
-            // .replace(/(?<!^[\d-]+)\./g, "") // 移除第一个小数点之外的所有句点
-            .replace(this.getDecimal, "$1$2") // 保留小数
-            .replace(/(\d)(?=(\d{3})+($|\.))/g, "$1,"); // 小数点前金额每三位","分割
+          return (
+            val
+              // .replace(/^\d+-$/, val.replace(/-$/, ""))
+              .replace(/[^0-9.-]/g, "") // 移除数字 小数点 负号之外的所有字符
+              .replace(/-(\D+)/, "-") // 移除第一个负号之后的所有字符
+              .replace(/^-0\d+$/, val.replace(/^-0/, "-"))
+              .replace(/(?!^)-/g, "") // 移除第一个负号之外的所有负号
+              // .replace(/(?<!^[\d-]+)\./g, "") // 移除第一个小数点之外的所有句点
+              .replace(this.getDecimal, "$1$2") // 保留小数
+              .replace(/(\d)(?=(\d{3})+($|\.))/g, "$1,")
+          ); // 小数点前金额每三位","分割
         default:
           return val;
       }
@@ -189,25 +194,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.easy-number-group {
-  display: flex;
-}
-.easy-number {
-  flex: 1;
-}
-.easy-number-group__addon {
-  border: 1px solid;
-  padding: 4px;
-  background-color: #f5f7fa;
-  color: #909399;
-}
-.easy-number-group__prepend {
-  border-radius: 4px 0 0 4px;
-  transform: translateX(1px);
-}
-.easy-number-group__append {
-  border-radius: 0 4px 4px 0;
-  transform: translateX(-1px);
-}
-</style>
